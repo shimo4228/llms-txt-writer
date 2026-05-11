@@ -99,6 +99,10 @@ cd skills/llms-txt-writer && uv run pytest -v  # 48 tests
 - [`claude-skill-search-first`](https://github.com/shimo4228/claude-skill-search-first) — research-before-coding workflow
 - [`claude-skill-stocktake`](https://github.com/shimo4228/claude-skill-stocktake) — quality audit for skills and commands
 
+## About this skill
+
+This skill is a **companion** to the [Agent Knowledge Cycle (AKC)](https://github.com/shimo4228/agent-knowledge-cycle) ecosystem maintained by [@shimo4228](https://github.com/shimo4228). It is not part of AKC's six-phase cycle itself, but is published alongside the three research lines: [AKC](https://github.com/shimo4228/agent-knowledge-cycle) ([DOI 10.5281/zenodo.19200726](https://doi.org/10.5281/zenodo.19200726)) — a six-phase bidirectional growth loop; [Contemplative Agent](https://github.com/shimo4228/contemplative-agent) ([DOI 10.5281/zenodo.19212118](https://doi.org/10.5281/zenodo.19212118)) — autonomous agents grounded in four contemplative axioms; and [Agent Attribution Practice (AAP)](https://github.com/shimo4228/agent-attribution-practice) ([DOI 10.5281/zenodo.19652013](https://doi.org/10.5281/zenodo.19652013)) — harness-neutral ADRs on accountability distribution.
+
 ## License
 
 MIT
