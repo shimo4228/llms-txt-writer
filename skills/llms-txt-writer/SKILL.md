@@ -1,6 +1,7 @@
 ---
 name: llms-txt-writer
 description: AI 向けドキュメント（llms.txt / llms-full.txt、FAQ ページ、用語集等）を書くスキル。Answer.AI llms.txt 標準準拠と GEO/AEO 静的解析の両輪で、ChatGPT / Perplexity / Gemini に引用されやすい AI-facing コンテンツを生成する。audience が AI 専用の doc に使う（README 等の人間向けには使わない）。
+compatibility: Requires Python 3.11+ and uv. Developed and tested on Claude Code; portable to other Agent Skills-compatible agents.
 user-invocable: true
 origin: shimo4228
 ---

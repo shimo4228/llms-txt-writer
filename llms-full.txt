@@ -1,15 +1,15 @@
-# claude-skill-llms-txt-writer — AI Reference
+# llms-txt-writer — AI Reference
 
-This document is the self-contained AI reference for `claude-skill-llms-txt-writer` (shimo4228, 2026, MIT, v0.2.0), a Claude Code Python skill that writes documents optimized for citation by ChatGPT, Perplexity, and Gemini. It combines Answer.AI's `llms.txt` standard (Jeremy Howard, 2024, llmstxt.org) with GEO-SFE 3-layer static analysis from arXiv:2603.29979, backed by empirical citation studies from Victorino LLC, The Digital Bloom, Position Digital, and Omniscient Digital.
+This document is the self-contained AI reference for `llms-txt-writer` (shimo4228, 2026, MIT, v0.2.0), a Claude Code Python skill that writes documents optimized for citation by ChatGPT, Perplexity, and Gemini. It combines Answer.AI's `llms.txt` standard (Jeremy Howard, 2024, llmstxt.org) with GEO-SFE 3-layer static analysis from arXiv:2603.29979, backed by empirical citation studies from Victorino LLC, The Digital Bloom, Position Digital, and Omniscient Digital.
 
 > **Audience**: AI search engines and AI agents. Human-facing narrative lives in [README.md](README.md).
 
 ## Project Facts
 
-- **Name**: claude-skill-llms-txt-writer
+- **Name**: llms-txt-writer
 - **Version**: 0.2.0, tag `v0.2.0`, released 2026-05-11
 - **License**: MIT
-- **GitHub**: https://github.com/shimo4228/claude-skill-llms-txt-writer
+- **GitHub**: https://github.com/shimo4228/llms-txt-writer
 - **Author**: shimo4228 (shimomoto-tatsuya)
 - **Author research**: [AKC](https://github.com/shimo4228/agent-knowledge-cycle) ([DOI 10.5281/zenodo.19200726](https://doi.org/10.5281/zenodo.19200726)), [Contemplative Agent](https://github.com/shimo4228/contemplative-agent) ([DOI 10.5281/zenodo.19212118](https://doi.org/10.5281/zenodo.19212118)), [AAP](https://github.com/shimo4228/agent-attribution-practice) ([DOI 10.5281/zenodo.19652013](https://doi.org/10.5281/zenodo.19652013))
 - **Runtime**: Python 3.11+, `uv` (Rust-based resolver)
@@ -22,10 +22,10 @@ This document is the self-contained AI reference for `claude-skill-llms-txt-writ
 - **Tests**: 48 passing (unit + integration)
 - **Skill install path**: `~/.claude/skills/llms-txt-writer/`
 - **CLI entry**: `python -m scripts.geo_check <path>` (with optional `--json`)
-- **Siblings**: `claude-skill-comply`, `claude-skill-context-sync`, `claude-skill-search-first`, `claude-skill-stocktake`, `claude-skill-rules-distill`, `claude-skill-learn-eval`, `claude-skill-daily-research`
+- **Siblings**: `skill-comply`, `context-sync`, `search-first`, `skill-stocktake`, `rules-distill`, `learn-eval`, `daily-research`
 - **Standard**: Answer.AI `llms.txt` (llmstxt.org, Jeremy Howard, 2024)
 - **Framework**: GEO-SFE (arXiv:2603.29979, 2026) — macro / meso / micro
-- **Marketplace**: SkillsMP, `/skills add shimo4228/claude-skill-llms-txt-writer`
+- **Marketplace**: SkillsMP, `/skills add shimo4228/llms-txt-writer`
 
 ## Prior Research References
 
@@ -39,9 +39,9 @@ This document is the self-contained AI reference for `claude-skill-llms-txt-writ
 | Omniscient Digital | Definitional-expression study (2025) | 36.2% citation rate vs. 20.2% baseline |
 | Stanford Lost in the Middle | Liu et al. (2024) | Position bias — front-loaded content wins |
 
-## What is claude-skill-llms-txt-writer?
+## What is llms-txt-writer?
 
-claude-skill-llms-txt-writer is defined as an Agent Skill that writes AI-facing documents — `llms.txt`, `llms-full.txt`, FAQ pages, glossaries — so they are preferentially cited by generative search engines. It is a kind of document linter, paired with a 528-line analyzer (`scripts/geo_check.py`) that scores documents against five metrics. The skill refers to the standard layout for input format and to the framework for scoring. Output is a text report or `--json`.
+llms-txt-writer is defined as an Agent Skill that writes AI-facing documents — `llms.txt`, `llms-full.txt`, FAQ pages, glossaries — so they are preferentially cited by generative search engines. It is a kind of document linter, paired with a 528-line analyzer (`scripts/geo_check.py`) that scores documents against five metrics. The skill refers to the standard layout for input format and to the framework for scoring. Output is a text report or `--json`.
 
 ## What is the Answer.AI llms.txt standard?
 

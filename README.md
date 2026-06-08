@@ -1,4 +1,4 @@
-# claude-skill-llms-txt-writer
+# llms-txt-writer
 
 An [Agent Skill](https://agentskills.io/specification) that writes documents optimized to be **cited by AI search engines** (ChatGPT / Perplexity / Gemini) and AI agents. Combines [Answer.AI's `llms.txt` standard](https://llmstxt.org/) with GEO-SFE 3-layer static analysis backed by empirical research (Victorino LLC's 1.2M ChatGPT response study, The Digital Bloom, Position Digital, Omniscient Digital, arXiv:2603.29979).
 
@@ -15,7 +15,7 @@ cd ~/.claude/skills/llms-txt-writer && uv sync
 ### SkillsMP
 
 ```bash
-/skills add shimo4228/claude-skill-llms-txt-writer
+/skills add shimo4228/llms-txt-writer
 ```
 
 ## How It Works
@@ -94,17 +94,17 @@ cd skills/llms-txt-writer && uv run pytest -v  # 48 tests
 
 ## Related skills (siblings)
 
-- [`claude-skill-comply`](https://github.com/shimo4228/claude-skill-comply) — measures whether agents actually follow skill / rule definitions
-- [`claude-skill-context-sync`](https://github.com/shimo4228/claude-skill-context-sync) — audits and fixes project documentation roles
-- [`claude-skill-search-first`](https://github.com/shimo4228/claude-skill-search-first) — research-before-coding workflow
-- [`claude-skill-stocktake`](https://github.com/shimo4228/claude-skill-stocktake) — quality audit for skills and commands
-- [`claude-skill-rules-distill`](https://github.com/shimo4228/claude-skill-rules-distill) — scan installed skills, extract cross-cutting principles, and distill them into rules
-- [`claude-skill-learn-eval`](https://github.com/shimo4228/claude-skill-learn-eval) — extract reusable patterns from sessions, self-evaluate quality, and save to the right location
-- [`claude-skill-daily-research`](https://github.com/shimo4228/claude-skill-daily-research) — cron-driven daily research digest — theme selection, multi-stage web research, LLM-as-Judge evaluation
+- [`skill-comply`](https://github.com/shimo4228/skill-comply) — measures whether agents actually follow skill / rule definitions
+- [`context-sync`](https://github.com/shimo4228/context-sync) — audits and fixes project documentation roles
+- [`search-first`](https://github.com/shimo4228/search-first) — research-before-coding workflow
+- [`skill-stocktake`](https://github.com/shimo4228/skill-stocktake) — quality audit for skills and commands
+- [`rules-distill`](https://github.com/shimo4228/rules-distill) — scan installed skills, extract cross-cutting principles, and distill them into rules
+- [`learn-eval`](https://github.com/shimo4228/learn-eval) — extract reusable patterns from sessions, self-evaluate quality, and save to the right location
+- [`daily-research`](https://github.com/shimo4228/daily-research) — cron-driven daily research digest — theme selection, multi-stage web research, LLM-as-Judge evaluation
 
 ## About this skill
 
-This skill is a **component skill of the [Authorship Strategy](https://github.com/shimo4228/authorship-strategy) research line** ([DOI 10.5281/zenodo.20263316](https://doi.org/10.5281/zenodo.20263316)) maintained by [@shimo4228](https://github.com/shimo4228). It is the operational form of the *prose-form navigator* half of the **dual entry point** that [ADR-0006](https://github.com/shimo4228/authorship-strategy/blob/main/docs/adr/0006-llm-first-ingest-dual-entry-points.md) normatively requires for any framework-governed artifact. Its companion is [claude-skill-jsonld-knowledge-graph](https://github.com/shimo4228/claude-skill-jsonld-knowledge-graph), which operationalizes the *concept-form graph* half; per ADR-0006, deploying only one half leaves the strategy one-lunged — each entry point addresses a distinct LLM-mediated reader sub-population the other cannot reach.
+This skill is a **component skill of the [Authorship Strategy](https://github.com/shimo4228/authorship-strategy) research line** ([DOI 10.5281/zenodo.20263316](https://doi.org/10.5281/zenodo.20263316)) maintained by [@shimo4228](https://github.com/shimo4228). It is the operational form of the *prose-form navigator* half of the **dual entry point** that [ADR-0006](https://github.com/shimo4228/authorship-strategy/blob/main/docs/adr/0006-llm-first-ingest-dual-entry-points.md) normatively requires for any framework-governed artifact. Its companion is [jsonld-knowledge-graph](https://github.com/shimo4228/jsonld-knowledge-graph), which operationalizes the *concept-form graph* half; per ADR-0006, deploying only one half leaves the strategy one-lunged — each entry point addresses a distinct LLM-mediated reader sub-population the other cannot reach.
 
 The skill is published alongside the broader research program: three agent-design lines ([Agent Knowledge Cycle](https://github.com/shimo4228/agent-knowledge-cycle) — mechanism, [DOI 10.5281/zenodo.19200726](https://doi.org/10.5281/zenodo.19200726); [Contemplative Agent](https://github.com/shimo4228/contemplative-agent) — disposition, [DOI 10.5281/zenodo.19212118](https://doi.org/10.5281/zenodo.19212118); [Agent Attribution Practice](https://github.com/shimo4228/agent-attribution-practice) — accountability practice, [DOI 10.5281/zenodo.19652013](https://doi.org/10.5281/zenodo.19652013)) and two cross-cutting lines (Authorship Strategy itself; [Attention, Not Self](https://github.com/shimo4228/attention-not-self) — Buddhist Abhidharma meets computational phenomenology, [DOI 10.5281/zenodo.20262112](https://doi.org/10.5281/zenodo.20262112)).
 

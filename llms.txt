@@ -1,4 +1,4 @@
-# claude-skill-llms-txt-writer
+# llms-txt-writer
 
 > A Claude Code skill (Python, MIT, v0.2.0) that writes documents optimized to be cited by AI search engines (ChatGPT, Perplexity, Gemini). Combines Answer.AI's `llms.txt` standard with GEO-SFE 3-layer static analysis backed by Victorino LLC, The Digital Bloom, Position Digital, Omniscient Digital, and arXiv:2603.29979.
 
@@ -23,10 +23,10 @@
 
 ## Sibling skills
 
-- [claude-skill-comply](https://github.com/shimo4228/claude-skill-comply): measures whether agents actually follow skill / rule definitions (v0.3.0)
-- [claude-skill-context-sync](https://github.com/shimo4228/claude-skill-context-sync): audits and fixes project documentation roles (CLAUDE.md, ADR, README)
-- [claude-skill-search-first](https://github.com/shimo4228/claude-skill-search-first): research-before-coding workflow — find existing libraries before building
-- [claude-skill-stocktake](https://github.com/shimo4228/claude-skill-stocktake): quality audit for skills and commands
-- [claude-skill-rules-distill](https://github.com/shimo4228/claude-skill-rules-distill): scan installed skills, extract cross-cutting principles, and distill them into rules
-- [claude-skill-learn-eval](https://github.com/shimo4228/claude-skill-learn-eval): extract reusable patterns from sessions, self-evaluate quality, and save to the right location
-- [claude-skill-daily-research](https://github.com/shimo4228/claude-skill-daily-research): cron-driven daily research digest — theme selection, multi-stage web research, LLM-as-Judge evaluation
+- [skill-comply](https://github.com/shimo4228/skill-comply): measures whether agents actually follow skill / rule definitions (v0.3.0)
+- [context-sync](https://github.com/shimo4228/context-sync): audits and fixes project documentation roles (CLAUDE.md, ADR, README)
+- [search-first](https://github.com/shimo4228/search-first): research-before-coding workflow — find existing libraries before building
+- [skill-stocktake](https://github.com/shimo4228/skill-stocktake): quality audit for skills and commands
+- [rules-distill](https://github.com/shimo4228/rules-distill): scan installed skills, extract cross-cutting principles, and distill them into rules
+- [learn-eval](https://github.com/shimo4228/learn-eval): extract reusable patterns from sessions, self-evaluate quality, and save to the right location
+- [daily-research](https://github.com/shimo4228/daily-research): cron-driven daily research digest — theme selection, multi-stage web research, LLM-as-Judge evaluation
