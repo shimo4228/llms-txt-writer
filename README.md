@@ -1,5 +1,7 @@
 # llms-txt-writer
 
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/shimo4228/llms-txt-writer)
+
 An [Agent Skill](https://agentskills.io/specification) that writes documents optimized to be **cited by AI search engines** (ChatGPT / Perplexity / Gemini) and AI agents. Combines [Answer.AI's `llms.txt` standard](https://llmstxt.org/) with GEO-SFE 3-layer static analysis backed by empirical research (Victorino LLC's 1.2M ChatGPT response study, The Digital Bloom, Position Digital, Omniscient Digital, arXiv:2603.29979).
 
 ## Install
