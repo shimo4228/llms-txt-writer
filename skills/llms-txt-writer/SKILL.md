@@ -213,7 +213,7 @@ version 番号、DOI、テスト数、モデル名、依存パッケージ名、
 
 ### 実戦事例
 
-contemplative-moltbook プロジェクト（2026-04-19）:
+contemplative-agent プロジェクト（2026-04-19）:
 - 施策前: ski-ramp **23.5%** FAIL
 - 手法 1 (Project Facts) 単独: **23.5% → 28.4%**（改善軽微）
 - 手法 1 + 2 + 3 の合わせ技: **23.5% → 55.0%** ✅ OK
