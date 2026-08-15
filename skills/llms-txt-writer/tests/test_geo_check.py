@@ -192,8 +192,12 @@ class TestChunkSelfContained:
 
     def test_suggestions_identify_offending_sections(self) -> None:
         sections = [
-            SectionInfo(level=2, heading="Good", body="word " * 100, word_count=100, char_count=500),
-            SectionInfo(level=2, heading="TooLong", body="word " * 400, word_count=400, char_count=2000),
+            SectionInfo(
+                level=2, heading="Good", body="word " * 100, word_count=100, char_count=500
+            ),
+            SectionInfo(
+                level=2, heading="TooLong", body="word " * 400, word_count=400, char_count=2000
+            ),
         ]
         result = chunk_self_contained(sections, "en")
         assert any("TooLong" in s for s in result.suggestions)
@@ -203,7 +207,9 @@ class TestChunkSelfContained:
 class TestQuestionHeadingRatio:
     def test_en_question_mark_counts(self) -> None:
         sections = [
-            SectionInfo(level=2, heading="Why does it matter?", body="", word_count=0, char_count=0),
+            SectionInfo(
+                level=2, heading="Why does it matter?", body="", word_count=0, char_count=0
+            ),
             SectionInfo(level=2, heading="Background", body="", word_count=0, char_count=0),
         ]
         result = question_heading_ratio(sections)
@@ -365,15 +371,22 @@ class TestCli:
         missing = tmp_path / "does_not_exist.md"
         assert main([str(missing)]) == 2
 
-    def test_main_success_returns_zero(self, tmp_path: Path, capsys: pytest.CaptureFixture[str]) -> None:
+    def test_main_success_returns_zero(
+        self, tmp_path: Path, capsys: pytest.CaptureFixture[str]
+    ) -> None:
         md = tmp_path / "article.md"
-        md.write_text("# Title\n\n## Why?\n\nAlpha Beta is defined as a framework. " + "word " * 80, encoding="utf-8")
+        md.write_text(
+            "# Title\n\n## Why?\n\nAlpha Beta is defined as a framework. " + "word " * 80,
+            encoding="utf-8",
+        )
         code = main([str(md)])
         assert code == 0
         captured = capsys.readouterr()
         assert "llms-txt-writer score report" in captured.out
 
-    def test_main_json_flag_emits_json(self, tmp_path: Path, capsys: pytest.CaptureFixture[str]) -> None:
+    def test_main_json_flag_emits_json(
+        self, tmp_path: Path, capsys: pytest.CaptureFixture[str]
+    ) -> None:
         md = tmp_path / "article.md"
         md.write_text("# Title\n\n## Why?\n\nAlpha Beta. " + "word " * 60, encoding="utf-8")
         code = main([str(md), "--json"])

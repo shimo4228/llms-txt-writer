@@ -19,7 +19,7 @@ AI 検索エンジン（ChatGPT / Perplexity / Gemini）と AI エージェン�
 - 既存の AI-facing 文書の GEO スコアを診断・改善する
 
 **使わない場面**:
-- README / 記事 / ブログポスト等の人間向けコンテンツ（`writing-ecosystem` + `article-writing` を使う）
+- README / 記事 / ブログポスト等の人間向けコンテンツ（`writing-ecosystem` を使う）
 - 人間可読性を最優先したいドキュメント
 
 ---

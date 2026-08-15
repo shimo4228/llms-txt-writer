@@ -32,10 +32,42 @@ EN_WORD_RANGE = (50, 150)
 JA_CHAR_RANGE = (150, 450)
 
 EN_COMMON_STOPWORDS = {
-    "The", "A", "An", "This", "That", "These", "Those", "It", "Is",
-    "I", "We", "You", "They", "He", "She", "But", "And", "Or", "If",
-    "In", "On", "At", "By", "For", "Of", "To", "From", "With", "Without",
-    "So", "As", "When", "While", "Where", "Why", "How",
+    "The",
+    "A",
+    "An",
+    "This",
+    "That",
+    "These",
+    "Those",
+    "It",
+    "Is",
+    "I",
+    "We",
+    "You",
+    "They",
+    "He",
+    "She",
+    "But",
+    "And",
+    "Or",
+    "If",
+    "In",
+    "On",
+    "At",
+    "By",
+    "For",
+    "Of",
+    "To",
+    "From",
+    "With",
+    "Without",
+    "So",
+    "As",
+    "When",
+    "While",
+    "Where",
+    "Why",
+    "How",
 }
 
 EN_DEFINITION_PATTERNS = [
@@ -140,9 +172,7 @@ def count_en_words(text: str) -> int:
 
 def count_ja_chars(text: str) -> int:
     return sum(
-        1
-        for ch in text
-        if not ch.isspace() and not unicodedata.category(ch).startswith("P")
+        1 for ch in text if not ch.isspace() and not unicodedata.category(ch).startswith("P")
     )
 
 
@@ -172,9 +202,7 @@ def parse_sections(markdown: str) -> list[SectionInfo]:
         wc = count_en_words(body)
         cc = count_ja_chars(body)
         sections.append(
-            SectionInfo(
-                level=level, heading=heading, body=body, word_count=wc, char_count=cc
-            )
+            SectionInfo(level=level, heading=heading, body=body, word_count=wc, char_count=cc)
         )
 
     for line in lines:
@@ -270,9 +298,7 @@ def skyramp_score(
     )
 
 
-def chunk_self_contained(
-    sections: list[SectionInfo], language: str
-) -> CheckResult:
+def chunk_self_contained(sections: list[SectionInfo], language: str) -> CheckResult:
     valid = [s for s in sections if s.heading or s.body.strip()]
     if not valid:
         return CheckResult(
@@ -320,7 +346,7 @@ def chunk_self_contained(
 
 def _is_question_heading(heading: str) -> bool:
     h = heading.rstrip()
-    return h.endswith("?") or h.endswith("？") or h.endswith("か。") or h.endswith("か？")
+    return h.endswith(("?", "？", "か。", "か？"))
 
 
 def question_heading_ratio(sections: list[SectionInfo]) -> CheckResult:
