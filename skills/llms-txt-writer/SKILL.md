@@ -19,7 +19,8 @@ AI 検索エンジン（ChatGPT / Perplexity / Gemini）と AI エージェン�
 - 既存の AI-facing 文書の GEO スコアを診断・改善する
 
 **使わない場面**:
-- README / 記事 / ブログポスト等の人間向けコンテンツ（`writing-ecosystem` を使う）
+- README / repo のトップページ（`readme-writer` を使う — 証拠スクリプト + fresh context の判定器 + review panel を持つ）
+- 記事 / エッセイ / ブログポスト等の人間向けコンテンツ（`writing-ecosystem` を使う）
 - 人間可読性を最優先したいドキュメント
 
 ---
@@ -41,16 +42,29 @@ AI 検索エンジン（ChatGPT / Perplexity / Gemini）と AI エージェン�
 
 ---
 
-## Answer.AI llms.txt Standard
+## Answer.AI llms.txt Standard（**v2** — as-of 2026-08-23 に一次ソース確認）
 
-[llmstxt.org](https://llmstxt.org/)（Jeremy Howard / Answer.AI 2024 提案）の 2 ファイル構成を採用する。repo root に配置すると AI 検索エンジンが優先的に参照する。
+[llmstxt.org](https://llmstxt.org/)（Jeremy Howard / Answer.AI。2024-09-03 公開、**v2 は 2026-08-10 更新**）。
 
-### 2 ファイルの役割分担
+**spec が定めるのは `llms.txt` だけ**:
+
+- **必須は H1（プロジェクト名）のみ**。順序は BOM（任意）→ H1 → 要約 blockquote →
+  見出し以外の詳細 markdown → H2 区切りのファイルリスト
+- **`Optional` セクション** = 二次情報。「より短い context が要るときエージェントが
+  スキップしてよいリンク」という意味（機械的な必須/任意の区別ではない）
+- **発見用の link relation**（HTTP `Link` ヘッダまたは HTML `<link>` で提供する）:
+  `rel="describedby"` → llms.txt 本体、`rel="alternate" type="text/markdown"` → markdown 版ページ
+- **`.md` URL 規約**: `page.html.md`（付加）/ `page.md`（置換）/ ルートは `index.html.md` または `index.md`
+- **サブパスの llms.txt**: 「A file covers the URLs under its path」。複数該当するときは
+  **最も具体的なもの**を使う
+
+**`llms-full.txt` は spec に無い**（`llms_txt2ctx` の context expansion も v2 の本文に記載なし）。
+以下の 2 ファイル構成は**コミュニティ慣行**として本 skill が採る運用であって、標準準拠ではない:
 
 | ファイル | 役割 | 内容 | サイズ目安 |
 |---------|------|------|-----------|
-| `llms.txt` | **Navigator**（robots.txt の AI 版） | H1 + 要約 blockquote + H2 カテゴリ + bullet リンク列 | ~5 KB |
-| `llms-full.txt` | **自己完結型コンテンツ** | FAQ + 用語集 + 引用参照などの full content | ~20 KB |
+| `llms.txt` | **Navigator**（spec 準拠） | H1 + 要約 blockquote + H2 カテゴリ + bullet リンク列 | ~5 KB |
+| `llms-full.txt` | **自己完結型コンテンツ**（spec 外の慣行） | FAQ + 用語集 + 引用参照などの full content | ~20 KB |
 
 ### llms.txt（Navigator）の標準フォーマット
 
@@ -242,8 +256,8 @@ llms.txt / llms-full.txt 側でやること:
 - `llms.txt` 冒頭に Graph-first reading order block 追加（`> AI agents should read graph.jsonld first` blockquote + numbered "Recommended reading order" section）
 - `## Core documentation` の **最上位** に navigator entry を追加（"Read first" qualifier 推奨）
 - `llms-full.txt` 末尾に question-form H2（"How do X and Y relate as a graph?"）を追加し graph.jsonld を参照（question-form は 2.8x citation boost）
-- README.md（人間向け）冒頭に `<details><summary>AI-facing reading order</summary>` 折りたたみ block。追加の language mirror がある場合は summary tag と intro 行のみ localize、bullet list は paths なので en 共通でよい。ja を超える mirror を維持するかは traffic data に基づき判断（human viewers が統計的にゼロなら performative になりがち）
-- hub-and-spoke topology の場合、line 側 README から hub graph への reverse-link を上記 block 内に追加
+- **README 側の置き方は `readme-writer` が正本**（本 skill は README に手を入れない）。あちらの規約は「AI 向けの機械可読導線（graph.jsonld / llms.txt）は `<details>` に入れず、**末尾に平文 1–2 行**」で、理由は rendered-HTML の crawler と HTML ブロックを不透明扱いする抽出器に折りたたみが見えないこと。冒頭の `<details>` block を README に足さない
+- hub-and-spoke topology の場合、line 側 README から hub graph への reverse-link を上記の平文行に含める（配置の判断は `readme-writer`）
 
 graph 自体の設計、schema vocabulary、cross-graph @id 規約、CODEMAPS との役割境界、verification workflow は別 skill が正本を持つ。
 
