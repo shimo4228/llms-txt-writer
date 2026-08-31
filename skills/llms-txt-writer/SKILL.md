@@ -279,5 +279,5 @@ fixtures/sample_ja.md と sample_en.md で基本挙動を確認できる。
 
 ## Related
 
-- `writing-ecosystem` skill — 人間向け執筆の orchestrator（役割は完全に分離。本 skill は AI 向けのみ）
+- `writing-ecosystem` skill（`~/MyAI_Lab/zenn-content` 常駐）— 人間向け執筆の orchestrator（役割は完全に分離。本 skill は AI 向けのみ）
 - [llmstxt.org](https://llmstxt.org/) — Answer.AI llms.txt 標準の原典
