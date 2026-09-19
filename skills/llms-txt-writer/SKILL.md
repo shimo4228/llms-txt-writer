@@ -259,7 +259,7 @@ llms.txt / llms-full.txt 側でやること:
 - **README 側の置き方は `readme-writer` が正本**（本 skill は README に手を入れない）。あちらの規約は「AI 向けの機械可読導線（graph.jsonld / llms.txt）は `<details>` に入れず、**末尾に平文 1–2 行**」で、理由は rendered-HTML の crawler と HTML ブロックを不透明扱いする抽出器に折りたたみが見えないこと。冒頭の `<details>` block を README に足さない
 - hub-and-spoke topology の場合、line 側 README から hub graph への reverse-link を上記の平文行に含める（配置の判断は `readme-writer`）
 
-graph 自体の設計、schema vocabulary、cross-graph @id 規約、CODEMAPS との役割境界、verification workflow は別 skill が正本を持つ。
+graph 自体の設計、schema vocabulary、cross-graph @id 規約、file-level 構造との役割境界、verification workflow は別 skill が正本を持つ。
 
 See skill: [`jsonld-knowledge-graph`](../jsonld-knowledge-graph/SKILL.md)
 
