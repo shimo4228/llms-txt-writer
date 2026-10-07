@@ -1,6 +1,6 @@
 ---
 name: llms-txt-writer
-description: AI 向けドキュメント（llms.txt / llms-full.txt、FAQ ページ、用語集等）を書くスキル。Answer.AI llms.txt 標準準拠と GEO/AEO 静的解析の両輪で、ChatGPT / Perplexity / Gemini に引用されやすい AI-facing コンテンツを生成する。audience が AI 専用の doc に使う（README 等の人間向けには使わない）。
+description: AI 向けドキュメント（llms.txt / llms-full.txt、FAQ ページ、用語集等）を書くスキル。Answer.AI llms.txt 標準準拠と GEO/AEO 静的解析で、ChatGPT / Perplexity / Gemini に引用されやすい AI-facing コンテンツを生成する。audience が AI 専用の doc に使う。
 compatibility: Requires Python 3.11+ and uv. Developed and tested on Claude Code; portable to other Agent Skills-compatible agents.
 user-invocable: true
 origin: shimo4228
@@ -19,7 +19,7 @@ AI 検索エンジン（ChatGPT / Perplexity / Gemini）と AI エージェン�
 - 既存の AI-facing 文書の GEO スコアを診断・改善する
 
 **使わない場面**:
-- README / repo のトップページ（`readme-writer` を使う — 証拠スクリプト + fresh context の判定器 + review panel を持つ）
+- README / repo のトップページ（`readme-writer` を使う — 証拠スクリプトと、主張をコードとも照らす fresh context の判定器 readme-judge を持つ）
 - 記事 / エッセイ / ブログポスト等の人間向けコンテンツ（`writing-ecosystem` を使う）
 - 人間可読性を最優先したいドキュメント
 
@@ -239,11 +239,8 @@ contemplative-agent プロジェクト（2026-04-19）:
 
 ## Anti-patterns
 
-- 数値スコアだけ表示して具体案なしで終わる（recommender 型の罠）
-- 「AI 向けに SEO キーワードを詰め込め」と解釈する（読みやすさ低下で逆効果、AI 判定にもマイナス）
-- script 結果を無視して Claude が独自にフルレビューする（script の決定論性が台無し）
-- 人間向け README / 記事に本 skill を適用する（質問見出し化 / TL;DR ブロック等が可読性を下げる）
-- H3 以下で Q&A を並べる（geo_check は H2 のみカウント。H3 Q は見えない）
+- キーワードを詰め込まず、可読性を保つ（詰め込みは AI 側の判定でもマイナス）
+- 数値判定は script に任せ、Claude は §2 の質的観点だけを足す（script の決定論性を保つ）
 
 ---
 
