@@ -29,7 +29,7 @@ from scripts.geo_check import (
 
 
 class FakeEntityExtractor:
-    """Deterministic extractor for unit tests — avoids loading GiNZA/spaCy models."""
+    """Deterministic extractor for unit tests, independent of the regex heuristic."""
 
     def __init__(self, mapping: dict[str, list[str]] | None = None) -> None:
         self._mapping = mapping or {}

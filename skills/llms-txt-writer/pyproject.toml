@@ -3,12 +3,7 @@ name = "llms-txt-writer"
 version = "0.2.0"
 description = "AI-facing writing skill with GEO/AEO static analysis and Answer.AI llms.txt standard compliance"
 requires-python = ">=3.11"
-dependencies = [
-  "markdown-it-py>=3.0",
-  "textstat>=0.7",
-  "ginza>=5.2",
-  "ja-ginza>=5.2",
-]
+dependencies = []
 
 [dependency-groups]
 dev = [
@@ -21,7 +16,7 @@ testpaths = ["tests"]
 pythonpath = ["."]
 markers = [
   "unit: fast pure-python unit tests",
-  "integration: slower tests requiring NLP models",
+  "integration: end-to-end CLI tests",
 ]
 
 [tool.ruff]

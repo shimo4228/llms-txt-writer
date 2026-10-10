@@ -152,8 +152,10 @@ my-project/
 
 ## Execution
 
+> 以下のパスは `${CLAUDE_SKILL_DIR}`（この SKILL.md のあるディレクトリ）から始まる。変数を置換しないエージェントでは、そのディレクトリと読み替える。
+
 ```
-uv run --directory ~/.claude/skills/llms-txt-writer python -m scripts.geo_check "$ARGUMENTS"
+uv run --directory "${CLAUDE_SKILL_DIR}" python -m scripts.geo_check "$ARGUMENTS"
 ```
 
 引数は解析対象 Markdown / llms-full.txt の絶対パス。`--json` を付けると機械可読 JSON を出力。
@@ -253,7 +255,7 @@ llms.txt / llms-full.txt 側でやること:
 - `llms.txt` 冒頭に Graph-first reading order block 追加（`> AI agents should read graph.jsonld first` blockquote + numbered "Recommended reading order" section）
 - `## Core documentation` の **最上位** に navigator entry を追加（"Read first" qualifier 推奨）
 - `llms-full.txt` 末尾に question-form H2（"How do X and Y relate as a graph?"）を追加し graph.jsonld を参照（question-form は 2.8x citation boost）
-- **README 側の置き方は `readme-writer` が正本**（本 skill は README に手を入れない）。あちらの規約は「AI 向けの機械可読導線（graph.jsonld / llms.txt）は `<details>` に入れず、**末尾に平文 1–2 行**」で、理由は rendered-HTML の crawler と HTML ブロックを不透明扱いする抽出器に折りたたみが見えないこと。冒頭の `<details>` block を README に足さない
+- **README 側の置き方は `readme-writer` が正本**（本 skill は README に手を入れない）。導線は readme-writer の LLM-read フロア（README 末尾の `<details>`、link-map）に入る（ADR-0091）。README の冒頭に別の `<details>` block を足さない
 - hub-and-spoke topology の場合、line 側 README から hub graph への reverse-link を上記の平文行に含める（配置の判断は `readme-writer`）
 
 graph 自体の設計、schema vocabulary、cross-graph @id 規約、file-level 構造との役割境界、verification workflow は別 skill が正本を持つ。
@@ -265,7 +267,7 @@ See skill: [`jsonld-knowledge-graph`](../jsonld-knowledge-graph/SKILL.md)
 ## Verification
 
 ```bash
-cd ~/.claude/skills/llms-txt-writer
+cd "${CLAUDE_SKILL_DIR}"
 uv sync --dev
 uv run pytest tests/ --cov=scripts --cov-report=term-missing
 ```

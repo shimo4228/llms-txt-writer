@@ -15,7 +15,7 @@ Status: active; synced one way from the author's Claude Code harness via `script
 ## Architecture
 
 - [scripts/geo_check.py](skills/llms-txt-writer/scripts/geo_check.py): bilingual (EN / JA) static analyzer — 5 GEO metrics in one pass, text or `--json` output; imports only the Python standard library (Japanese handled with regular expressions)
-- [pyproject.toml](skills/llms-txt-writer/pyproject.toml): Python 3.11+ with `uv`; declares `markdown-it-py`, `textstat`, `ginza`, `ja-ginza`, which `geo_check.py` does not import
+- [pyproject.toml](skills/llms-txt-writer/pyproject.toml): Python 3.11+ with `uv`; no runtime dependencies (pytest for the tests)
 - [tests/test_geo_check.py](skills/llms-txt-writer/tests/test_geo_check.py): 48 passing unit + integration tests
 - [fixtures/](skills/llms-txt-writer/fixtures/): `sample_en.md`, `sample_ja.md` — minimal worked examples
 

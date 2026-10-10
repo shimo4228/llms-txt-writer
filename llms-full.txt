@@ -14,7 +14,7 @@ This document is the self-contained AI reference for `llms-txt-writer` (shimo422
 - **Status**: active; synced one way from the author's harness via `scripts/sync-from-local.sh`
 - **Parent line**: [Authorship Strategy](https://github.com/shimo4228/authorship-strategy) ([DOI 10.5281/zenodo.20263316](https://doi.org/10.5281/zenodo.20263316)); hub: https://github.com/shimo4228/shimo4228
 - **Runtime**: Python 3.11+, `uv`
-- **Declared deps**: `markdown-it-py>=3.0`, `textstat>=0.7`, `ginza>=5.2`, `ja-ginza>=5.2` (not imported; `geo_check.py` is stdlib-only)
+- **Dependencies**: none at runtime (`geo_check.py` is stdlib-only); pytest for the tests
 - **Dev deps**: `pytest>=8.0`, `pytest-cov>=5.0`
 - **Build backend**: `hatchling`
 - **Languages**: English (en), Japanese (ja, regex-based) — auto-detected
