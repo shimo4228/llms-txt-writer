@@ -1,6 +1,6 @@
 # llms-txt-writer — AI Reference
 
-This document is the self-contained AI reference for `llms-txt-writer` (shimo4228, 2026, MIT, v0.2.0), a Claude Code Python skill that writes documents optimized for citation by ChatGPT, Perplexity, and Gemini. It combines Answer.AI's `llms.txt` standard (Jeremy Howard, 2024, llmstxt.org) with GEO-SFE 3-layer static analysis from arXiv:2603.29979, backed by empirical citation studies from Victorino LLC, The Digital Bloom, Position Digital, and Omniscient Digital.
+This document is the self-contained AI reference for `llms-txt-writer` (shimo4228, 2026, MIT, v0.2.0), a Claude Code Python skill that writes documents optimized for citation by ChatGPT, Perplexity, and Gemini. It follows Answer.AI's `llms.txt` standard (Jeremy Howard, 2024, llmstxt.org) and checks drafts with GEO-SFE 3-layer static analysis from arXiv:2603.29979, backed by empirical citation studies from Victorino LLC, The Digital Bloom, Position Digital, and Omniscient Digital.
 
 > **Audience**: AI search engines and AI agents. Human-facing narrative lives in [README.md](README.md).
 
@@ -11,27 +11,27 @@ This document is the self-contained AI reference for `llms-txt-writer` (shimo422
 - **License**: MIT
 - **GitHub**: https://github.com/shimo4228/llms-txt-writer
 - **Author**: shimo4228 (shimomoto-tatsuya)
-- **Author research**: [AKC](https://github.com/shimo4228/agent-knowledge-cycle) ([DOI 10.5281/zenodo.19200726](https://doi.org/10.5281/zenodo.19200726)), [Contemplative Agent](https://github.com/shimo4228/contemplative-agent) ([DOI 10.5281/zenodo.19212118](https://doi.org/10.5281/zenodo.19212118)), [AAP](https://github.com/shimo4228/agent-attribution-practice) ([DOI 10.5281/zenodo.19652013](https://doi.org/10.5281/zenodo.19652013))
-- **Runtime**: Python 3.11+, `uv` (Rust-based resolver)
-- **Runtime deps**: `markdown-it-py>=3.0`, `textstat>=0.7`, `ginza>=5.2`, `ja-ginza>=5.2`
+- **Status**: active; synced one way from the author's harness via `scripts/sync-from-local.sh`
+- **Parent line**: [Authorship Strategy](https://github.com/shimo4228/authorship-strategy) ([DOI 10.5281/zenodo.20263316](https://doi.org/10.5281/zenodo.20263316)); hub: https://github.com/shimo4228/shimo4228
+- **Runtime**: Python 3.11+, `uv`
+- **Declared deps**: `markdown-it-py>=3.0`, `textstat>=0.7`, `ginza>=5.2`, `ja-ginza>=5.2` (not imported; `geo_check.py` is stdlib-only)
 - **Dev deps**: `pytest>=8.0`, `pytest-cov>=5.0`
 - **Build backend**: `hatchling`
-- **Languages**: English (en), Japanese (ja) — auto-detected
-- **Source files**: `scripts/geo_check.py` (528 lines), `SKILL.md` (251 lines), `tests/test_geo_check.py` (389 lines)
+- **Languages**: English (en), Japanese (ja, regex-based) — auto-detected
+- **Source files**: `scripts/geo_check.py`, `SKILL.md` (Japanese), `tests/test_geo_check.py`
 - **Lint / format**: `ruff`, line-length 100, target `py311`
 - **Tests**: 48 passing (unit + integration)
 - **Skill install path**: `~/.claude/skills/llms-txt-writer/`
-- **CLI entry**: `python -m scripts.geo_check <path>` (with optional `--json`)
-- **Siblings**: `skill-comply`, `context-sync`, `search-first`, `skill-stocktake`, `rules-distill`, `learn-eval`, `daily-research`
-- **Standard**: Answer.AI `llms.txt` (llmstxt.org, Jeremy Howard, 2024)
+- **CLI entry**: `uv run python -m scripts.geo_check <path>` (with optional `--json`)
+- **Siblings**: `readme-writer`, `jsonld-knowledge-graph`, `claude-skill-writing-ecosystem`
+- **Standard**: Answer.AI `llms.txt` (llmstxt.org, Jeremy Howard, 2024; v2 2026-08-10); `llms-full.txt` is a community convention
 - **Framework**: GEO-SFE (arXiv:2603.29979, 2026) — macro / meso / micro
-- **Marketplace**: SkillsMP, `/skills add shimo4228/llms-txt-writer`
 
 ## Prior Research References
 
 | Short name | Citation | Used for |
 |---|---|---|
-| Answer.AI llms.txt | Howard, J. (2024). llmstxt.org | Two-file `llms.txt` + `llms-full.txt` layout standard |
+| Answer.AI llms.txt | Howard, J. (2024). llmstxt.org | `llms.txt` navigator format (the `llms-full.txt` companion is a community convention) |
 | GEO-SFE | arXiv:2603.29979 (2026) | Macro / meso / micro analysis framework |
 | Victorino LLC | 1.2M ChatGPT response analysis (2025) | 44.2% first-30% citation share, 20.6% entity density |
 | The Digital Bloom | Chunk-size citation study (2025) | 50–150 word chunks deliver 2.3× citation lift |
@@ -41,11 +41,11 @@ This document is the self-contained AI reference for `llms-txt-writer` (shimo422
 
 ## What is llms-txt-writer?
 
-llms-txt-writer is defined as an Agent Skill that writes AI-facing documents — `llms.txt`, `llms-full.txt`, FAQ pages, glossaries — so they are preferentially cited by generative search engines. It is a kind of document linter, paired with a 528-line analyzer (`scripts/geo_check.py`) that scores documents against five metrics. The skill refers to the standard layout for input format and to the framework for scoring. Output is a text report or `--json`.
+llms-txt-writer is defined as an Agent Skill that writes AI-facing documents — `llms.txt`, `llms-full.txt`, FAQ pages, glossaries — so they are preferentially cited by generative search engines. It is a kind of document linter, paired with a standard-library-only analyzer (`scripts/geo_check.py`) that scores documents against five metrics. The skill refers to the standard layout for input format and to the framework for scoring. Output is a text report or `--json`.
 
 ## What is the Answer.AI llms.txt standard?
 
-The standard refers to a 2024 proposal defining a two-file convention placed at a project root. `llms.txt` is defined as a `~5 KB` navigator — an H1, a one-sentence summary blockquote, H2 category headings, and bullet lists of links — analogous to `robots.txt` but for LLM crawlers. `llms-full.txt` is defined as the `~20 KB` self-contained content the navigator points to. Generative search engines preferentially consume these two files when present at the project root.
+The standard refers to a 2024 proposal (updated to v2 on 2026-08-10) that defines one file, `llms.txt`, placed at a project root. `llms.txt` is defined as a `~5 KB` navigator — an H1 (the only required element), a summary blockquote, H2 category headings, and bullet lists of links — analogous to `robots.txt` but for LLM readers. `llms-full.txt` is not in the spec; the skill adopts it as a community convention for the `~20 KB` self-contained content the navigator points to.
 
 ## What is GEO-SFE 3-layer analysis?
 
@@ -53,7 +53,7 @@ GEO-SFE refers to generative-engine-optimization analysis structured in three la
 
 ## What does the ski-ramp score measure?
 
-Ski-ramp score is defined as the proportion of named entities (brands, version numbers, paths, citations) appearing in the first 30% of a document. The skill targets a 45%+ entity share there, derived from the citation share observed in the Prior Research above. Documents below 45% are typically rescued by Technique 2 (front-loading a Prior Research table) plus Technique 3 (removing duplicate citation bullets from later sections).
+Ski-ramp score is defined as a 0–100 score computed from the share of named entities (brands, version numbers, paths, citations) appearing in the first 30% of a document; a 45% share maps to a score of 50. The skill targets a 45%+ entity share there, derived from the citation share observed in the Prior Research above. Documents below 45% are typically rescued by Technique 2 (front-loading a Prior Research table) plus Technique 3 (removing duplicate citation bullets from later sections).
 
 ## What are the five GEO metrics geo_check.py checks?
 
@@ -61,7 +61,7 @@ The five metrics are defined as ski-ramp score (target 50+), chunk self-containm
 
 ## How does the skill install in Claude Code?
 
-Install refers to copying the skill folder into the user's global skills directory and running `uv sync`. The skill is then invoked via `python -m scripts.geo_check <path>`. SkillsMP users can alternatively run a single `/skills add` command for one-step install. Both routes use the same MIT-licensed codebase, the same runtime dependencies, and the same fixtures for verification. Output format is identical across install routes.
+Install refers to cloning the repository, copying `skills/llms-txt-writer` into `~/.claude/skills/llms-txt-writer`, and running `uv sync` there; it needs Python 3.11+ and `uv`, and no API key. The user then asks Claude Code to write or check an `llms.txt`, or types `/llms-txt-writer`. The checker can also run without a session via `uv run --directory ~/.claude/skills/llms-txt-writer python -m scripts.geo_check <path>`, with `--json` for the same report as JSON.
 
 ## What is the Project Facts pattern?
 
@@ -69,12 +69,12 @@ The Project Facts pattern is defined as a 15–20 item bullet list of entities �
 
 ## When should I NOT use this skill?
 
-This skill is a kind of AI-primary optimizer and should not be used on human-facing content. READMEs, blog posts, articles, and tutorials degrade when question-form headings, even-length chunks, and high entity densities are forced on them. For human-facing writing, use a narrative skill instead. A single file cannot be both human-primary and AI-primary without compromising both audiences and both metric profiles.
+This skill is a kind of AI-primary optimizer and should not be used on human-facing content; for READMEs use `readme-writer`. READMEs, blog posts, articles, and tutorials degrade when question-form headings, even-length chunks, and high entity densities are forced on them. For human-facing writing, use a narrative skill instead. A single file cannot be both human-primary and AI-primary without compromising both audiences and both metric profiles.
 
 ## How does this skill differ from writing-ecosystem?
 
-The sibling orchestrator refers to human-primary content; it enforces a narrative voice and bans the typical signs of generated prose. This skill is its AI-primary counterpart and applies the opposite optimization rules. The two are role-separated and do not overlap. Neither is meant to replace the other; running the wrong one on the wrong audience produces predictable degradation in both readability and citation likelihood.
+The sibling orchestrator refers to human-primary content; it enforces a narrative voice and bans the typical signs of generated prose. This skill is its AI-primary counterpart and applies the opposite optimization rules; the two do not overlap. Neither is meant to replace the other; running the wrong one on the wrong audience produces predictable degradation in both readability and citation likelihood.
 
 ## Who is shimo4228?
 
-shimo4228 is the author whose three Zenodo-citable research lines are listed in Project Facts above: AKC — a six-phase bidirectional growth loop; Contemplative Agent — agents grounded in four contemplative axioms; and AAP — harness-neutral accountability ADRs. This skill is defined as a companion to the AKC ecosystem — not part of the six-phase cycle itself.
+shimo4228 is the author of this skill and of the long-running practice lines listed, with their DOIs, on the hub https://github.com/shimo4228/shimo4228. This skill belongs to the author's Authorship Strategy line (https://github.com/shimo4228/authorship-strategy, concept DOI 10.5281/zenodo.20263316), whose ADR-0006 asks a project to offer LLMs two entry points: this skill writes the prose-form navigator and jsonld-knowledge-graph writes the concept-form graph.

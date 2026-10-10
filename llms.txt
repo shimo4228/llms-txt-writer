@@ -1,6 +1,8 @@
 # llms-txt-writer
 
-> A Claude Code skill (Python, MIT, v0.2.0) that writes documents optimized to be cited by AI search engines (ChatGPT, Perplexity, Gemini). Combines Answer.AI's `llms.txt` standard with GEO-SFE 3-layer static analysis backed by Victorino LLC, The Digital Bloom, Position Digital, Omniscient Digital, and arXiv:2603.29979.
+> A Claude Code skill (Python, MIT, v0.2.0) that writes documents optimized to be cited by AI search engines (ChatGPT, Perplexity, Gemini). Follows Answer.AI's `llms.txt` standard and checks each draft with GEO-SFE 3-layer static analysis backed by Victorino LLC, The Digital Bloom, Position Digital, Omniscient Digital, and arXiv:2603.29979.
+
+Status: active; synced one way from the author's Claude Code harness via `scripts/sync-from-local.sh`.
 
 ## Core documentation
 
@@ -8,25 +10,24 @@
 - [README.md](README.md): human-facing narrative (install, how it works, GEO metrics, examples)
 - [SKILL.md](skills/llms-txt-writer/SKILL.md): full skill specification — when to use, post-script interpretation, ski-ramp optimization techniques 1 / 2 / 3, anti-patterns
 - [CHANGELOG.md](CHANGELOG.md): release notes (v0.2.0 initial release)
+- [scripts/sync-from-local.sh](scripts/sync-from-local.sh): one-way export of the skill from the author's harness into this repo
 
 ## Architecture
 
-- [scripts/geo_check.py](skills/llms-txt-writer/scripts/geo_check.py): 528-line bilingual (EN / JA) static analyzer — 5 GEO metrics in one pass, text or `--json` output
-- [pyproject.toml](skills/llms-txt-writer/pyproject.toml): Python 3.11+, dependencies `markdown-it-py`, `textstat`, `ginza`, `ja-ginza`
+- [scripts/geo_check.py](skills/llms-txt-writer/scripts/geo_check.py): bilingual (EN / JA) static analyzer — 5 GEO metrics in one pass, text or `--json` output; imports only the Python standard library (Japanese handled with regular expressions)
+- [pyproject.toml](skills/llms-txt-writer/pyproject.toml): Python 3.11+ with `uv`; declares `markdown-it-py`, `textstat`, `ginza`, `ja-ginza`, which `geo_check.py` does not import
 - [tests/test_geo_check.py](skills/llms-txt-writer/tests/test_geo_check.py): 48 passing unit + integration tests
 - [fixtures/](skills/llms-txt-writer/fixtures/): `sample_en.md`, `sample_ja.md` — minimal worked examples
 
 ## Standard reference
 
-- [llmstxt.org](https://llmstxt.org/): Answer.AI's `llms.txt` proposal (Jeremy Howard, 2024) — the two-file `llms.txt` + `llms-full.txt` layout this skill implements
+- [llmstxt.org](https://llmstxt.org/): Answer.AI's `llms.txt` proposal (Jeremy Howard, 2024), which defines `llms.txt`; the `llms-full.txt` companion this skill also writes is a community convention (as of 2026-08-23)
 - [arXiv:2603.29979](https://arxiv.org/abs/2603.29979): GEO-SFE framework paper — macro / meso / micro analysis layers
 
 ## Sibling skills
 
-- [skill-comply](https://github.com/shimo4228/skill-comply): measures whether agents actually follow skill / rule definitions (v0.3.0)
-- [context-sync](https://github.com/shimo4228/context-sync): audits and fixes project documentation roles (CLAUDE.md, ADR, README)
-- [search-first](https://github.com/shimo4228/search-first): research-before-coding workflow — find existing libraries before building
-- [skill-stocktake](https://github.com/shimo4228/skill-stocktake): quality audit for skills and commands
-- [rules-distill](https://github.com/shimo4228/rules-distill): scan installed skills, extract cross-cutting principles, and distill them into rules
-- [learn-eval](https://github.com/shimo4228/learn-eval): extract reusable patterns from sessions, self-evaluate quality, and save to the right location
-- [daily-research](https://github.com/shimo4228/daily-research): cron-driven daily research digest — theme selection, multi-stage web research, LLM-as-Judge evaluation
+- [readme-writer](https://github.com/shimo4228/readme-writer): the human-facing counterpart — rewrites or reviews a README so first-time visitors can tell what the project is; a fresh judge checks the page against the code
+- [jsonld-knowledge-graph](https://github.com/shimo4228/jsonld-knowledge-graph): designs and ships a JSON-LD knowledge graph (`graph.jsonld`) next to `llms.txt`
+- [claude-skill-writing-ecosystem](https://github.com/shimo4228/claude-skill-writing-ecosystem): orchestrator for human-facing articles and essays
+- [Authorship Strategy](https://github.com/shimo4228/authorship-strategy): the parent practice line (concept DOI 10.5281/zenodo.20263316); its ADR-0006 asks for both a prose entry point (`llms.txt`) and a concept graph (`graph.jsonld`)
+- [shimo4228](https://github.com/shimo4228/shimo4228): the author's hub — the practice lines, their DOIs, and the tools
